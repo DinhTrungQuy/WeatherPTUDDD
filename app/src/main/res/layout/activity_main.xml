@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayoutMain"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue1"
+    tools:context=".Screens.main.WeatherActivity">
+
+    <TextView
+        android:id="@+id/textViewCityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@android:string/unknownName" />
+
+    <SearchView
+        android:id="@+id/searchViewLocation"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:animateLayoutChanges="true"
+        android:inputType="text"
+        android:queryHint="@string/enter_location"
+        app:layout_constraintBottom_toTopOf="@+id/viewLine1"
+        app:layout_constraintEnd_toStartOf="@+id/textViewCityName"
+        app:layout_constraintStart_toEndOf="@+id/imageViewLocation"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/viewLine1"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/blue2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/searchViewLocation" />
+
+
+    <View
+        android:id="@+id/viewLine2"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/blue2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewWeatherNow" />
+
+    <ImageView
+        android:id="@+id/imageViewLocation"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/choose_current_location_icon"
+        android:onClick="onClickImageViewLocation"
+        app:layout_constraintBottom_toTopOf="@+id/viewLine1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/ic_menu_mylocation" />
+
+    <TextView
+        android:id="@+id/textViewWeatherForecastLabel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:onClick="onClickTextViewWeatherForecastLabel"
+        android:background="@color/blue2"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:padding="8dp"
+        android:text="@string/five_days_weather_forecast"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewLine2"
+        tools:ignore="TextContrastCheck" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewWeather"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWeatherForecastLabel" />
+
+    <ImageView
+        android:id="@+id/imageViewWeatherNow"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNow"
+        app:srcCompat="@drawable/day_clear"
+        android:contentDescription="@string/weather_now_icon" />
+
+    <TextView
+        android:id="@+id/textViewTemperatureNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        tools:text="-10"
+        android:textColor="@color/white"
+        android:textSize="60sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewWeatherNow"
+        app:layout_constraintStart_toEndOf="@+id/imageViewWeatherNow"
+        app:layout_constraintTop_toTopOf="@+id/imageViewWeatherNow" />
+
+    <TextView
+        android:id="@+id/textViewNow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/weather_now"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewNowPlus6"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewLine1" />
+
+    <TextView
+        android:id="@+id/textViewNowPlus6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        tools:text="Now+6"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewNowPlus12"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewNow"
+        app:layout_constraintTop_toBottomOf="@+id/viewLine1" />
+
+    <TextView
+        android:id="@+id/textViewNowPlus12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        tools:text="Now+12"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/textViewNowPlus18"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewNowPlus6"
+        app:layout_constraintTop_toBottomOf="@+id/viewLine1" />
+
+    <TextView
+        android:id="@+id/textViewNowPlus18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        tools:text="Now+18"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewNowPlus12"
+        app:layout_constraintTop_toBottomOf="@+id/viewLine1" />
+
+    <TextView
+        android:id="@+id/textViewOLabel3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/o"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewTemperatureNow"
+        app:layout_constraintTop_toTopOf="@+id/textViewTemperatureNow" />
+
+    <TextView
+        android:id="@+id/textViewCorF3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        tools:text="C"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewOLabel3"
+        app:layout_constraintTop_toTopOf="@+id/textViewOLabel3" />
+
+    <ImageView
+        android:id="@+id/imageViewWeatherPlus6"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNowPlus6"
+        app:layout_constraintStart_toStartOf="@+id/textViewNowPlus6"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNowPlus6"
+        app:srcCompat="@drawable/day_clear"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imageViewWeatherPlus12"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNowPlus12"
+        app:layout_constraintStart_toStartOf="@+id/textViewNowPlus12"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNowPlus12"
+        app:srcCompat="@drawable/day_clear"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imageViewWeatherPlus18"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewNowPlus18"
+        app:layout_constraintStart_toStartOf="@+id/textViewNowPlus18"
+        app:layout_constraintTop_toBottomOf="@+id/textViewNowPlus18"
+        app:srcCompat="@drawable/day_clear"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textViewTemperature6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="+10"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewWeatherPlus6"
+        app:layout_constraintStart_toStartOf="@+id/imageViewWeatherPlus6"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewWeatherPlus6" />
+
+    <TextView
+        android:id="@+id/textViewTemperature12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="+10"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewWeatherPlus12"
+        app:layout_constraintStart_toStartOf="@+id/imageViewWeatherPlus12"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewWeatherPlus12" />
+
+    <TextView
+        android:id="@+id/textViewTemperature18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="+15"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewWeatherPlus18"
+        app:layout_constraintStart_toStartOf="@+id/imageViewWeatherPlus18"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewWeatherPlus18" />
+
+    <TextView
+        android:id="@+id/textViewOLabel4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="@string/o"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewTemperature6"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewWeatherPlus6"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/textViewOLabel5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="@string/o"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewTemperature12"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewWeatherPlus12"
+        tools:ignore="SmallSp" />
+
+    <TextView
+        android:id="@+id/textViewOLabel6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:text="@string/o"
+        android:textColor="@color/white"
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/textViewTemperature18"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewWeatherPlus18"
+        tools:ignore="SmallSp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
